@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>🌸 Phạm Lan Thi · pastel landing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+  <style>
+    /* ================= RESET & BIẾN MÀU ================= */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(145deg, #fce4ec 0%, #e0f7fa 50%, #ede7f6 100%);
+      background-size: 400% 400%;
+      animation: gradientFlow 18s ease infinite;
+      position: relative;
+      overflow-x: hidden;
+      padding: 16px;
+    }
+
+    @keyframes gradientFlow {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* ================= NỀN CHẤM BI + SAO BAY ================= */
+    .bg-dots {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background-image: radial-gradient(circle, #ffd1dc 12px, transparent 13px);
+      background-size: 80px 80px;
+      opacity: 0.3;
+    }
+
+    .floating-star {
+      position: fixed;
+      font-size: 2.4rem;
+      opacity: 0.45;
+      animation: floatStar 8s infinite alternate ease-in-out;
+      pointer-events: none;
+      z-index: 1;
+      filter: drop-shadow(0 8px 12px rgba(255, 200, 220, 0.4));
+    }
+
+    @keyframes floatStar {
+      0%   { transform: translateY(0) rotate(0deg); }
+      100% { transform: translateY(-28px) rotate(12deg); }
+    }
+
+    .star-1 { top: 5%; left: 3%; animation-duration: 10s; }
+    .star-2 { bottom: 8%; right: 6%; animation-duration: 12s; animation-delay: 1s; }
+    .star-3 { top: 18%; right: 12%; animation-duration: 9s; animation-delay: 0.5s; }
+    .star-4 { bottom: 14%; left: 10%; animation-duration: 11s; animation-delay: 2s; }
+
+    /* ================= LAYOUT CHÍNH ================= */
+    .container {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      max-width: 1100px;
+      width: 100%;
+      padding: 20px 16px;
+    }
+
+    /* ================= THẺ PROFILE ================= */
+    .profile-card {
+      background: rgba(255, 255, 255, 0.65);
+      backdrop-filter: blur(12px);
+      border-radius: 56px;
+      padding: 32px 32px 28px;
+      box-shadow: 0 25px 40px -12px rgba(180, 140, 170, 0.3), 0 0 0 2px #fff9fb inset;
+      border: 2px solid rgba(255, 245, 250, 0.8);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 260px;
+      flex: 0 0 auto;
+    }
+
+    .greeting {
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 500;
+      font-size: 1.1rem;
+      background: #ffe8f0;
+      padding: 8px 18px;
+      border-radius: 40px;
+      color: #a15b7b;
+      letter-spacing: 0.5px;
+      box-shadow: 0 6px 12px #fad0df;
+      margin-bottom: 12px;
+      white-space: nowrap;
+    }
+
+    .avatar-wrapper {
+      position: relative;
+      width: 160px;
+      height: 160px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 12px 0 8px;
+    }
+
+    .avatar-main {
+      font-size: 6.8rem;
+      line-height: 1;
+      filter: drop-shadow(0 12px 10px rgba(0, 0, 0, 0.08));
+      animation: floatAvatar 3s infinite alternate ease-in-out;
+      z-index: 2;
+    }
+
+    @keyframes floatAvatar {
+      0%   { transform: translateY(0); }
+      100% { transform: translateY(-6px); }
+    }
+
+    .flower, .mini-star {
+      position: absolute;
+      font-size: 1.8rem;
+      pointer-events: none;
+    }
+
+    .flower-1 { top: -6px;  left: -8px;  animation: floatFlower 3s infinite alternate; }
+    .flower-2 { top: -10px; right: -6px; animation: floatFlower 3.4s infinite alternate-reverse; }
+    .flower-3 { bottom: -8px;  left: -10px; animation: floatFlower 3.8s infinite alternate; }
+    .flower-4 { bottom: -12px; right: -4px;  animation: floatFlower 2.8s infinite alternate-reverse; }
+
+    @keyframes floatFlower {
+      0%   { transform: translateY(0) scale(1); }
+      100% { transform: translateY(-12px) scale(1.1); }
+    }
+
+    .mini-star-1 { top: 20%;    left: -22px;  color: #f7b2c1; animation: starFloat 4s infinite; }
+    .mini-star-2 { top: 12%;    right: -20px; color: #b2e0d4; animation: starFloat 3.2s infinite 0.4s; }
+    .mini-star-3 { bottom: 22%; left: -18px;  color: #d9c7f0; animation: starFloat 3.8s infinite 0.8s; }
+    .mini-star-4 { bottom: 16%; right: -16px; color: #fdd0b5; animation: starFloat 4.2s infinite 0.2s; }
+
+    @keyframes starFloat {
+      0%   { transform: translateY(0) rotate(0deg); opacity: 0.9; }
+      50%  { transform: translateY(-14px) rotate(12deg); opacity: 1; }
+      100% { transform: translateY(0) rotate(0deg); opacity: 0.9; }
+    }
+
+    .owner-name {
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 600;
+      font-size: 1.9rem;
+      background: linear-gradient(to right, #c48b9f, #9f86b0);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-top: 8px;
+      letter-spacing: 1px;
+      text-shadow: 0 4px 12px rgba(255, 220, 240, 0.7);
+      text-align: center;
+    }
+
+    /* ================= MENU ================= */
+    .menu {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      flex: 0 0 300px;
+    }
+
+    .menu-btn {
+      position: relative;
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(8px);
+      border-radius: 48px;
+      padding: 18px 28px;
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 500;
+      font-size: 1.2rem;
+      color: #5a4052;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      cursor: pointer;
+      box-shadow: 0 12px 22px -8px #d9b7c7, 0 2px 8px #fff8fb inset;
+      transition: all 0.25s;
+      overflow: hidden;
+      -webkit-tap-highlight-color: transparent;
+      border: 2px solid #fff6fa;
+    }
+
+    .menu-btn i {
+      font-size: 1.7rem;
+      font-style: normal;
+      filter: drop-shadow(0 4px 6px #ffd9e6);
+    }
+
+    /* hiệu ứng lướt sáng */
+    .menu-btn::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 80%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.75), transparent);
+      transform: skewX(-20deg);
+      transition: left 0.5s;
+      pointer-events: none;
+    }
+
+    .menu-btn:hover::after { left: 150%; }
+
+    .menu-btn:hover {
+      transform: translateY(-4px) scale(1.02);
+      background: #fffffff0;
+      box-shadow: 0 20px 28px -10px #cfa5b9, 0 0 0 3px #fff2f7 inset;
+    }
+
+    .menu-btn:active { transform: scale(0.98); }
+
+    /* ripple */
+    .ripple {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 210, 230, 0.75);
+      transform: scale(0);
+      animation: rippleAnim 0.6s linear;
+      pointer-events: none;
+    }
+
+    @keyframes rippleAnim {
+      to { transform: scale(4); opacity: 0; }
+    }
+
+    /* ================= OVERLAY ================= */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 240, 245, 0.85);
+      backdrop-filter: blur(18px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      transform: translateX(100%);
+      transition: transform 0.45s cubic-bezier(0.23, 1, 0.32, 1);
+      will-change: transform;
+      visibility: hidden;
+    }
+
+    .overlay.active {
+      transform: translateX(0);
+      visibility: visible;
+    }
+
+    .overlay-content {
+      background: #fffbfd;
+      max-width: 620px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      border-radius: 56px;
+      padding: 32px 28px 32px;
+      box-shadow: 0 40px 60px -20px #dbb0c0, 0 0 0 3px #fff0f5 inset;
+      border: 2px solid #ffeef4;
+      position: relative;
+      animation: popIn 0.4s ease;
+    }
+
+    @keyframes popIn {
+      0%   { transform: scale(0.92); opacity: 0.5; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .back-btn {
+      background: #f3e1ea;
+      border: 1px solid #ffeef4;
+      border-radius: 40px;
+      padding: 14px 24px;
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 600;
+      color: #6a3e55;
+      font-size: 1.05rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 22px;
+      cursor: pointer;
+      transition: 0.2s;
+      box-shadow: 0 6px 14px #eac9d8;
+    }
+
+    .back-btn:hover {
+      background: #ffeef4;
+      transform: scale(0.97);
+    }
+
+    h2 {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.9rem;
+      color: #7b4f68;
+      margin-bottom: 22px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    /* ================= LIÊN HỆ ================= */
+    .contact-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      background: #fcf2f7;
+      padding: 18px 24px;
+      border-radius: 40px;
+      text-decoration: none;
+      color: #4d3444;
+      font-weight: 600;
+      font-size: 1.15rem;
+      transition: 0.2s;
+      border: 2px solid #ffecf2;
+      box-shadow: 0 8px 18px #f3dae4;
+      word-break: break-word;
+    }
+
+    .contact-item:hover {
+      background: #ffe7f1;
+      transform: translateY(-4px);
+      box-shadow: 0 14px 22px #e9c2d4;
+    }
+
+    .contact-item i {
+      font-size: 2rem;
+      font-style: normal;
+    }
+
+    .contact-item small {
+      display: block;
+      font-weight: 500;
+      font-size: 0.8rem;
+      color: #a3809a;
+      margin-top: 2px;
+    }
+
+    /* ================= FORM CÂU HỎI ================= */
+    .question-form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .form-group label {
+      font-weight: 600;
+      color: #7b5c6d;
+      margin-left: 16px;
+      font-size: 1rem;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      padding: 18px 22px;
+      border-radius: 40px;
+      border: 2px solid #f5d9e6;
+      background: #fff8fb;
+      font-family: 'Quicksand', sans-serif;
+      font-size: 1rem;
+      outline: none;
+      transition: 0.2s;
+      resize: vertical;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: #dba9c0;
+      background: #ffffff;
+      box-shadow: 0 0 0 4px #ffe3f0;
+    }
+
+    .submit-btn {
+      background: #e5bfd2;
+      border: 2px solid #fff3f9;
+      border-radius: 40px;
+      padding: 17px 24px;
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 600;
+      font-size: 1.2rem;
+      color: #4c2a3d;
+      cursor: pointer;
+      transition: 0.2s;
+      box-shadow: 0 10px 16px #eec5d8;
+      margin-top: 8px;
+    }
+
+    .submit-btn:hover {
+      background: #f2cfe0;
+      transform: scale(0.98);
+    }
+
+    .note {
+      font-size: 0.85rem;
+      color: #a3809a;
+      text-align: center;
+      margin-top: 4px;
+    }
+
+    /* ================= QUIZ ================= */
+    .progress-bar-bg {
+      width: 100%;
+      height: 16px;
+      background: #f1dfe8;
+      border-radius: 40px;
+      overflow: hidden;
+      margin: 4px 0 18px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: #f7c6d9;
+      border-radius: 40px;
+      transition: width 0.35s ease, background 0.35s ease;
+    }
+
+    .question-text {
+      font-size: 1.35rem;
+      font-family: 'Fredoka', sans-serif;
+      color: #573f4d;
+      margin: 4px 0 18px;
+      line-height: 1.45;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .option-btn {
+      background: #fbf0f6;
+      padding: 16px 22px;
+      border-radius: 40px;
+      border: 2px solid #ffe4ef;
+      font-family: 'Quicksand', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      text-align: left;
+      cursor: pointer;
+      transition: 0.15s;
+      color: #4e3242;
+      box-shadow: 0 6px 12px #f5d6e3;
+    }
+
+    .option-btn:hover {
+      background: #ffe1ee;
+      border-color: #eac2d4;
+      transform: translateX(6px);
+    }
+
+    .quiz-result {
+      text-align: center;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.5rem;
+      color: #9b5e7a;
+      margin: 24px 0 20px;
+      line-height: 1.5;
+    }
+
+    .confetti-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1100;
+    }
+
+    /* ================= LÁ THƯ YÊU THƯƠNG ================= */
+    .letter {
+      position: relative;
+      background: linear-gradient(160deg, #fff8fb 0%, #fdf0f7 55%, #f2f8fb 100%);
+      border-radius: 40px;
+      padding: 32px 26px 28px;
+      border: 2px dashed #f3cbdd;
+      box-shadow: 0 18px 30px -14px #e8bfd2;
+    }
+
+    .letter::before {
+      content: '💌';
+      position: absolute;
+      top: -22px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 2.4rem;
+      filter: drop-shadow(0 6px 10px #f0c6d8);
+    }
+
+    .letter p {
+      font-size: 1.05rem;
+      line-height: 1.9;
+      color: #5e4254;
+      margin-bottom: 16px;
+      text-align: justify;
+    }
+
+    .letter p:last-of-type { margin-bottom: 0; }
+
+    .letter .signature {
+      text-align: right;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.15rem;
+      color: #b07a95;
+      margin-top: 20px;
+    }
+
+    .letter .highlight {
+      background: linear-gradient(transparent 62%, #ffe3ef 62%);
+      padding: 0 2px;
+      font-weight: 700;
+    }
+
+    /* ================= TOAST ================= */
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%) translateY(90px);
+      background: #ffffff;
+      color: #6b3f56;
+      padding: 18px 30px;
+      border-radius: 60px;
+      box-shadow: 0 18px 28px #dbb1c4;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: transform 0.4s cubic-bezier(0.18, 1.3, 0.6, 1);
+      z-index: 1200;
+      border: 2px solid #ffe3ef;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      visibility: hidden;
+      max-width: 90vw;
+      text-align: center;
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      visibility: visible;
+    }
+
+    /* ================= RESPONSIVE ================= */
+    @media (max-width: 750px) {
+      .container { flex-direction: column; gap: 26px; }
+      .profile-card { width: 100%; max-width: 340px; }
+      .menu { width: 100%; max-width: 340px; flex: 1 1 auto; }
+      .owner-name { font-size: 1.7rem; }
+      h2 { font-size: 1.6rem; }
+      .overlay-content { padding: 26px 18px; border-radius: 44px; }
+      .question-text { font-size: 1.2rem; }
+      .letter p { font-size: 1rem; line-height: 1.85; }
+    }
+
+    @media (max-width: 400px) {
+      .avatar-main { font-size: 5.5rem; }
+      .greeting { font-size: 0.92rem; white-space: normal; text-align: center; }
+      .menu-btn { font-size: 1.05rem; padding: 16px 22px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Nền chấm bi & sticker sao -->
+  <div class="bg-dots"></div>
+  <div class="floating-star star-1">🌟</div>
+  <div class="floating-star star-2">✨</div>
+  <div class="floating-star star-3">⭐</div>
+  <div class="floating-star star-4">🌠</div>
+
+  <!-- ================= MAIN ================= -->
+  <div class="container">
+    <!-- Thẻ profile -->
+    <div class="profile-card">
+      <div class="greeting" id="greeting">🌼 Chào buổi sáng!</div>
+      <div class="avatar-wrapper">
+        <span class="flower flower-1">🌸</span>
+        <span class="flower flower-2">🌼</span>
+        <span class="flower flower-3">🌺</span>
+        <span class="flower flower-4">🌷</span>
+        <span class="mini-star mini-star-1">★</span>
+        <span class="mini-star mini-star-2">★</span>
+        <span class="mini-star mini-star-3">★</span>
+        <span class="mini-star mini-star-4">★</span>
+        <div class="avatar-main">🐈‍⬛</div>
+      </div>
+      <div class="owner-name">Phạm Lan Thi</div>
+    </div>
+
+    <!-- Menu -->
+    <div class="menu">
+      <button class="menu-btn" data-section="contact">
+        <i>📬</i> Thông tin liên hệ
+      </button>
+      <button class="menu-btn" data-section="question">
+        <i>💬</i> Câu hỏi nhỏ
+      </button>
+      <button class="menu-btn" data-section="quiz">
+        <i>🎮</i> Mini game
+      </button>
+      <button class="menu-btn" data-section="letter">
+        <i>💌</i> Mấy lời yêu thương
+      </button>
+    </div>
+  </div>
+
+  <!-- Overlay -->
+  <div class="overlay" id="overlay">
+    <div class="overlay-content">
+      <button class="back-btn" id="backBtn">← Quay lại</button>
+      <div id="dynamicContent"></div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast">🎉 Cảm ơn bạn! Câu hỏi đã được gửi.</div>
+
+  <script>
+    (function () {
+      'use strict';
+
+      /* =========================================================
+         1. LỜI CHÀO TỰ ĐỘNG THEO GIỜ
+         ========================================================= */
+      function updateGreeting() {
+        const hour = new Date().getHours();
+        let text;
+        if (hour >= 5 && hour < 12)       text = '🌼 Chào buổi sáng!';
+        else if (hour >= 12 && hour < 18) text = '☀️ Chào buổi chiều!';
+        else if (hour >= 18 && hour < 22) text = '🌙 Chào buổi tối!';
+        else                              text = '🌌 Chúc ngủ ngon!';
+        document.getElementById('greeting').textContent = text;
+      }
+      updateGreeting();
+      setInterval(updateGreeting, 60000);
+
+      /* =========================================================
+         2. RIPPLE EFFECT
+         ========================================================= */
+      document.querySelectorAll('.menu-btn').forEach(function (btn) {
+        btn.addEventListener('click', function (e) {
+          const rect = this.getBoundingClientRect();
+          const ripple = document.createElement('span');
+          ripple.className = 'ripple';
+          ripple.style.left = (e.clientX - rect.left) + 'px';
+          ripple.style.top = (e.clientY - rect.top) + 'px';
+          ripple.style.width = ripple.style.height = '20px';
+          this.appendChild(ripple);
+          setTimeout(function () { ripple.remove(); }, 600);
+        });
+      });
+
+      /* =========================================================
+         3. OVERLAY LOGIC
+         ========================================================= */
+      const overlay = document.getElementById('overlay');
+      const dynamicContent = document.getElementById('dynamicContent');
+      const backBtn = document.getElementById('backBtn');
+      const toast = document.getElementById('toast');
+
+      let quizActive = false;
+
+      function openOverlay(section) {
+        overlay.classList.add('active');
+        if (section === 'contact')       renderContact();
+        else if (section === 'question') renderQuestionForm();
+        else if (section === 'quiz')     renderQuiz();
+        else if (section === 'letter')   renderLetter();
+      }
+
+      function closeOverlay() {
+        overlay.classList.remove('active');
+        quizActive = false;
+        const canvas = document.querySelector('.confetti-canvas');
+        if (canvas) canvas.remove();
+      }
+
+      backBtn.addEventListener('click', closeOverlay);
+      overlay.addEventListener('click', function (e) {
+        if (e.target === overlay) closeOverlay();
+      });
+
+      document.querySelectorAll('.menu-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          openOverlay(btn.dataset.section);
+        });
+      });
+
+      /* =========================================================
+         4. THÔNG TIN LIÊN HỆ
+         ========================================================= */
+      function renderContact() {
+        dynamicContent.innerHTML = `
+          <h2>📬 Kết nối với mình nhé</h2>
+          <div class="contact-cards">
+            <a href="https://www.instagram.com/phwnlaq_/" target="_blank" rel="noopener" class="contact-item">
+              <i>📸</i>
+              <span>Instagram<small>@phwnlaq_</small></span>
+            </a>
+            <a href="https://www.facebook.com/mai.ang.thi.85579" target="_blank" rel="noopener" class="contact-item">
+              <i>📘</i>
+              <span>Facebook<small>Mai Áng Thi</small></span>
+            </a>
+            <a href="https://zyo.lol/wqx79" target="_blank" rel="noopener" class="contact-item">
+              <i>🎧</i>
+              <span>Discord<small>zyo.lol/wqx79</small></span>
+            </a>
+          </div>
+        `;
+      }
+
+      /* =========================================================
+         5. FORM CÂU HỎI NHỎ  →  FormSubmit (email)
+         ========================================================= */
+      const FORM_ENDPOINT = 'https://formsubmit.co/ajax/quynh.nguyen050909@gmail.com';
+
+      function renderQuestionForm() {
+        dynamicContent.innerHTML = `
+          <h2>💬 Gửi câu hỏi cho mình nhé</h2>
+          <form class="question-form" id="questionForm">
+            <div class="form-group">
+              <label for="qName">Tên của bạn</label>
+              <input type="text" id="qName" placeholder="Ví dụ: Bông nhỏ" required>
+            </div>
+            <div class="form-group">
+              <label for="qText">Câu hỏi</label>
+              <textarea id="qText" rows="3" placeholder="Bạn muốn hỏi mình điều gì..." required></textarea>
+            </div>
+            <button type="submit" class="submit-btn" id="submitBtn">Gửi câu hỏi 💌</button>
+            <p class="note">Câu hỏi sẽ được gửi tới hộp thư của Thi 💛</p>
+          </form>
+        `;
+
+        const form = document.getElementById('questionForm');
+        const submitBtn = document.getElementById('submitBtn');
+
+        form.addEventListener('submit', async function (e) {
+          e.preventDefault();
+
+          const name = document.getElementById('qName').value.trim();
+          const question = document.getElementById('qText').value.trim();
+          if (!name || !question) return;
+
+          const originalText = submitBtn.textContent;
+          submitBtn.disabled = true;
+          submitBtn.textContent = 'Đang gửi... ✈️';
+
+          try {
+            const res = await fetch(FORM_ENDPOINT, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+              },
+              body: JSON.stringify({
+                name: name,
+                question: question,
+                _subject: 'Câu hỏi mới từ ' + name,
+                _template: 'table'
+              })
+            });
+
+            if (!res.ok) throw new Error('HTTP ' + res.status);
+
+            // Thành công → popup cảm ơn
+            form.reset();
+            showToast('🎉 Cảm ơn bạn! Câu hỏi đã được gửi đi rồi.');
+
+          } catch (err) {
+            showToast('😢 Gửi chưa được, thử lại sau nhé!');
+          } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalText;
+          }
+        });
+      }
+
+      function showToast(message) {
+        toast.textContent = message;
+        toast.classList.add('show');
+        clearTimeout(showToast._timer);
+        showToast._timer = setTimeout(function () {
+          toast.classList.remove('show');
+        }, 3200);
+      }
+
+      /* =========================================================
+         6. MINI GAME QUIZ (sai 1 câu là thua ngay)
+         Đáp án: 1-B | 2-C | 3-A | 4-B | 5-B
+         ========================================================= */
+      const quizData = [
+        {
+          question: 'Câu 1. Mình thuộc cung hoàng đạo nào?',
+          options: ['Sư Tử', 'Xử Nữ', 'Thiên Bình'],
+          correct: 1
+        },
+        {
+          question: 'Câu 2. Màu sắc yêu thích của mình là gì?',
+          options: ['Hồng', 'Xanh dương', 'Màu nào cũng thích'],
+          correct: 2
+        },
+        {
+          question: 'Câu 3. Loài hoa mình thích nhất là gì?',
+          options: ['Hoa ly', 'Hoa hướng dương', 'Hoa tulip'],
+          correct: 0
+        },
+        {
+          question: 'Câu 4. Mình thích mùa nào nhất trong năm?',
+          options: ['Mùa xuân', 'Mùa hạ', 'Mùa thu'],
+          correct: 1
+        },
+        {
+          question: 'Câu 5. Mình thích được gọi bằng biệt danh gì?',
+          options: ['Bé con', 'Bông iu', 'Công chúa'],
+          correct: 1
+        }
+      ];
+
+      let currentQuestion = 0;
+
+      function renderQuiz() {
+        currentQuestion = 0;
+        quizActive = true;
+        renderQuizQuestion();
+      }
+
+      function renderQuizQuestion() {
+        if (!quizActive) return;
+
+        const q = quizData[currentQuestion];
+        const percent = (currentQuestion / quizData.length) * 100;
+        const barColor = percent >= 60 ? '#a8ddc9' : (percent >= 30 ? '#d9c7f0' : '#f7c6d9');
+
+        dynamicContent.innerHTML = `
+          <h2>🎮 Mini game quiz</h2>
+          <div class="progress-bar-bg">
+            <div class="progress-fill" style="width:${percent}%; background:${barColor};"></div>
+          </div>
+          <div class="question-text">${q.question}</div>
+          <div class="options" id="optionsContainer">
+            ${q.options.map(function (opt, idx) {
+              return `<button class="option-btn" data-index="${idx}">${opt}</button>`;
+            }).join('')}
+          </div>
+        `;
+
+        document.querySelectorAll('.option-btn').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            handleAnswer(parseInt(btn.dataset.index, 10));
+          });
+        });
+      }
+
+      function handleAnswer(selected) {
+        if (!quizActive) return;
+
+        const q = quizData[currentQuestion];
+
+        // Trả lời sai → dừng ngay
+        if (selected !== q.correct) {
+          quizActive = false;
+          dynamicContent.innerHTML = `
+            <h2>😿 Thua rồi...</h2>
+            <div class="quiz-result">
+              Bạn đã trả lời sai ở câu ${currentQuestion + 1}!<br>
+              Thử lại lần nữa nhé?
+            </div>
+            <button class="submit-btn" id="restartQuiz">🔄 Chơi lại từ đầu</button>
+          `;
+          document.getElementById('restartQuiz').addEventListener('click', renderQuiz);
+          return;
+        }
+
+        // Đúng → sang câu tiếp theo
+        currentQuestion++;
+
+        if (currentQuestion < quizData.length) {
+          renderQuizQuestion();
+        } else {
+          quizActive = false;
+          showWinScreen();
+        }
+      }
+
+      function showWinScreen() {
+        dynamicContent.innerHTML = `
+          <h2>🎉 Chúc mừng!</h2>
+          <div class="quiz-result">
+            Bạn đã trả lời đúng cả 5 câu!<br>
+            Bạn hiểu mình ghê á ✨💛
+          </div>
+          <button class="submit-btn" id="playAgainBtn">🔁 Chơi lại</button>
+        `;
+        document.getElementById('playAgainBtn').addEventListener('click', renderQuiz);
+        launchConfetti();
+      }
+
+      /* =========================================================
+         7. CONFETTI
+         ========================================================= */
+      function launchConfetti() {
+        const old = document.querySelector('.confetti-canvas');
+        if (old) old.remove();
+
+        const canvas = document.createElement('canvas');
+        canvas.className = 'confetti-canvas';
+        document.body.appendChild(canvas);
+
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const colors = ['#f7b2c1', '#b2e0d4', '#d9c7f0', '#fdd0b5', '#f9e7b3', '#c4a5e0'];
+        const particles = [];
+
+        for (let i = 0; i < 140; i++) {
+          particles.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height * 0.4 - canvas.height * 0.2,
+            size: Math.random() * 8 + 4,
+            speedY: Math.random() * 4 + 3,
+            speedX: Math.random() * 2 - 1,
+            color: colors[Math.floor(Math.random() * colors.length)],
+            rotation: Math.random() * 360,
+            rotSpeed: Math.random() * 6 - 3
+          });
+        }
+
+        let raf;
+        function draw() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+          for (let i = 0; i < particles.length; i++) {
+            const p = particles[i];
+            ctx.save();
+            ctx.translate(p.x, p.y);
+            ctx.rotate(p.rotation * Math.PI / 180);
+            ctx.fillStyle = p.color;
+            ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 0.6);
+            ctx.restore();
+
+            p.y += p.speedY;
+            p.x += p.speedX;
+            p.rotation += p.rotSpeed;
+
+            if (p.y > canvas.height + 20) {
+              p.y = -20;
+              p.x = Math.random() * canvas.width;
+            }
+          }
+          raf = requestAnimationFrame(draw);
+        }
+        draw();
+
+        setTimeout(function () {
+          cancelAnimationFrame(raf);
+          canvas.remove();
+        }, 4500);
+      }
+
+      /* =========================================================
+         8. MẤY LỜI YÊU THƯƠNG
+         ========================================================= */
+      function renderLetter() {
+        dynamicContent.innerHTML = `
+          <h2>💌 Mấy lời yêu thương</h2>
+          <div class="letter">
+            <p>
+              Heloo, mình là <span class="highlight">Bông</span>, hay mọi người còn biết mình là
+              <span class="highlight">Hoa, Thi, Khuê, Hải Hà, Lan Thi</span>,...
+            </p>
+            <p>
+              Cảm ơn những người bạn đã cùng mình líu lo suốt quãng đường vừa qua.
+              Mong những người bạn thân thương của mình luôn hạnh phúc và gặp siêu nhiều may mắn.
+            </p>
+            <p>
+              Hy vọng bạn sẽ không phải rơi quá nhiều nước mắt trước những va vấp của cuộc đời.
+              Và thật lòng mong rằng, ngay cả trong những ngày đau buồn nhất, khi ngước nhìn bầu trời xanh,
+              bạn vẫn cảm nhận được rằng mình đang được cuộc đời ôm ấp, yêu thương vô hạn
+              <em>(có cả mình nữa hjhj)</em>.
+            </p>
+            <p>
+              Giữ gìn sức khỏe nhé, mấy người tui thương 💛
+            </p>
+            <div class="signature">— Bông 🌸</div>
+          </div>
+        `;
+      }
+
+    })();
+  </script>
+</body>
+</html>
